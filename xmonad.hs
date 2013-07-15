@@ -1,17 +1,5 @@
 {-
-  This is my xmonad configuration file.
-  There are many like it, but this one is mine.
 
-  If you want to customize this file, the easiest workflow goes
-  something like this:
-    1. Make a small change.
-    2. Hit "super-q", which recompiles and restarts xmonad
-    3. If there is an error, undo your change and hit "super-q" again to
-       get to a stable place again.
-    4. Repeat
-
-  Author:     David Brewer
-  Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
 -}
 
 import XMonad
@@ -140,7 +128,7 @@ gimpLayout = smartBorders(avoidStruts(ThreeColMid 1 (3/100) (3/4)))
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
 myLayouts =
-  onWorkspace "9:Pix" gimpLayout
+  onWorkspace "8:Pix" gimpLayout
   $ defaultLayouts
 
 
@@ -174,9 +162,10 @@ myKeyBindings =
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
     , ((myModMask, xK_p), spawn "synapse")
+    , ((mod1Mask, xK_space), spawn "synapse")
     , ((myModMask, xK_u), focusUrgent)
     , ((myModMask .|. controlMask, xK_l), spawn "xlock")
-    , ((shiftMask, xK_Caps_Lock), spawn "layout-switch")
+    , ((controlMask, xK_Shift_L), spawn "layout-switch")
     , ((0, 0x1008FF12), spawn "amixer -q set Master toggle")
     , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
     , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")
