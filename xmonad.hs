@@ -28,11 +28,11 @@ import Data.List
   simpler parts of xmonad's behavior and are straightforward to tweak.
 -}
 
-myModMask            = mod4Mask 
+myModMask            = mod4Mask
 myFocusedBorderColor = "#66cc66"
 myNormalBorderColor  = "#111111"
-myBorderWidth        = 1       
-myTerminal           = "rxvt"  
+myBorderWidth        = 1
+myTerminal           = "rxvt"
 
 
 {-
@@ -164,7 +164,8 @@ myKeyBindings =
     , ((myModMask, xK_p), spawn "synapse")
     , ((mod1Mask, xK_space), spawn "synapse")
     , ((myModMask, xK_u), focusUrgent)
-    , ((myModMask .|. controlMask, xK_l), spawn "xlock")
+    , ((myModMask .|. controlMask, xK_l),
+       spawn "gnome-screensaver-command -l & sleep 1; xset dpms force suspend")
     , ((controlMask, xK_Shift_L), spawn "layout-switch")
     , ((0, 0x1008FF12), spawn "amixer -q set Master toggle")
     , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
@@ -185,7 +186,7 @@ myManagementHooks = [
   , className =? "Gimp-2.8" --> doF (W.shift "8:Pix")
   , className =? "Emacs" --> doF (W.shift "2:Emacs")
   , className =? "Thunderbird" --> doF (W.shift "9:Messages")
-  , resource  =? "HipChat - Web Chat - Google Chrome" --> doF (W.shift "9:Messages")  
+  , resource  =? "HipChat - Web Chat - Google Chrome" --> doF (W.shift "9:Messages")
   , className =? "jetbrains-idea-ce" --> doF (W.shift "3:Idea")
   , className =? "libreoffice-calc" --> doF (W.shift "7:Office")
   --, "libreoffice" `isPrefixOf` className --> doF (W.shift "7:Office")
@@ -275,6 +276,6 @@ main = do
         . wrap myVisibleWSLeft myVisibleWSRight
       , ppUrgent = xmobarColor myUrgentWSColor ""
         . wrap myUrgentWSLeft myUrgentWSRight
-    } 
+    }
   }
     `additionalKeys` myKeys
